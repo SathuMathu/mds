@@ -1,0 +1,1 @@
+MalwareBazaar is a project operated by abuse.ch. The purpose of the project is to collect and share malware samples, helping IT-security researchers and threat analysts protecting their constituency and customers from cyber threats.
