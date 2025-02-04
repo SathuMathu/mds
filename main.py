@@ -32,7 +32,6 @@ def load_virus_signatures(file_path):
 virus_signatures = load_virus_signatures("recent_hashes.csv")
 
 def calculate_file_hash(file_path):
-    """Calculate SHA-256 hash of the given file."""
     sha256 = hashlib.sha256()
     try:
         with open(file_path, "rb") as f:
@@ -43,7 +42,6 @@ def calculate_file_hash(file_path):
     return sha256.hexdigest()
 
 def check_for_malwared(file_path):
-    """Check if the file is malicious based on its hash."""
     try:
         file_hash = calculate_file_hash(file_path)
     except CorruptedFileException as e:
@@ -57,7 +55,6 @@ def check_for_malwared(file_path):
         return "File appears clean."
 
 def scan_directory(directory_path, progress_bar):
-    """Scan the directory for malicious files."""
     results = []
     total_files = sum([len(files) for _, _, files in os.walk(directory_path)])
     processed_files = 0
@@ -102,7 +99,6 @@ def open_file():
         save_result_to_csv(file_path, result)
 
 def save_result_to_csv(file_path, result):
-    """Save the scan result to a CSV file."""
     try:
         with open('scan_results.csv', mode='a', newline='') as file:
             writer = csv.writer(file)
@@ -115,7 +111,6 @@ def save_result_to_csv(file_path, result):
         messagebox.showerror("Error", f"Failed to save result: {e}")
 
 def save_results_to_csv(results, csv_file_path):
-    """Save scan results to a CSV file."""
     try:
         with open(csv_file_path, mode='a', newline='') as file:
             writer = csv.writer(file)
@@ -128,7 +123,6 @@ def save_results_to_csv(results, csv_file_path):
         messagebox.showerror("Error", f"Failed to save results: {e}")
 
 def view_results():
-    """Open the scan results CSV file with the default CSV viewer."""
     csv_file_path = "scan_results.csv"
     try:
         subprocess.Popen(['start', csv_file_path], shell=True)
@@ -136,7 +130,6 @@ def view_results():
         messagebox.showerror("Error", f"Could not open file: {e}")
 
 def view_quarantine():
-    """Open the quarantine directory with the default file explorer."""
     try:
         subprocess.Popen(['start', QUARANTINE_DIR], shell=True)
     except Exception as e:
