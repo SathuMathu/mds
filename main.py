@@ -8,7 +8,6 @@ import csv
 from datetime import datetime
 import subprocess
 import shutil
-
 class CorruptedFileException(Exception):
     pass
 
